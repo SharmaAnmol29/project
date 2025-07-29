@@ -1,0 +1,300 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.3
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: May 24, 2022 at 08:17 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+--
+-- Database: `wedding_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_table`
+--
+
+CREATE TABLE `admin_table` (
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
+  `admin_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin_table`
+--
+
+INSERT INTO `admin_table` (`email`, `password`, `full_name`, `admin_type`) VALUES
+('anmol99@yahoo.com', 'sharma1999', 'anmol sharma', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `booking_table`
+--
+
+CREATE TABLE `booking_table` (
+  `booking_id` int(11) NOT NULL,
+  `user_email` varchar(100) NOT NULL,
+  `package_id` int(11) NOT NULL,
+  `booking_date` date NOT NULL,
+  `event_date` date NOT NULL,
+  `amount` float NOT NULL,
+  `status` varchar(200) NOT NULL,
+  `payment_method` varchar(200) NOT NULL,
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category_table`
+--
+
+CREATE TABLE `category_table` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(100) NOT NULL,
+  `description` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category_table`
+--
+
+INSERT INTO `category_table` (`category_id`, `category_name`, `description`) VALUES
+(1, 'Musician', 'Select a wide range of top o the line musicians');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `packages`
+--
+
+CREATE TABLE `packages` (
+  `package_id` int(11) NOT NULL,
+  `package_name` varchar(100) NOT NULL,
+  `price` float NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `professional_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `packages`
+--
+
+INSERT INTO `packages` (`package_id`, `package_name`, `price`, `description`, `professional_id`) VALUES
+(13, 'Basic', 10000, 'TRADITIONAL PHOTOGRAPHY, TRADITIONAL VIDEOGRAPHY, PHOTO ALBUM.\n\n\n\n', 6),
+(14, 'SILVER', 20000, 'CANDID PHOTOGRAPHY, CINEMATIC VIDEOGRAPHY, PHOTO ALBUM.', 6),
+(15, 'GOLD', 30000, 'PRE-WEDDING SHOOT, CANDID PHOTOGRAPHY, CINEMATIC VIDEOGRAPHY,PHOTO ALBUM.\n', 6),
+(16, 'BASIC', 20000, 'TRADITIONAL PHOTOGRAPHY, TRADITIONAL VIDEOGRAPHY, PHOTO ALBUM.', 7),
+(17, 'SILVER', 30000, 'CANDID PHOTOGRAPHY, CINEMATIC VIDEOGRAPHY, PHOTO ALBUM.', 7),
+(18, 'GOLD', 40000, 'PRE-WEDDING SHOOT, CANDID PHOTOGRAPHY, CINEMATIC VIDEOGRAPHY,PHOTO ALBUM.', 7),
+(19, 'BASIC', 20000, 'TRIAL MAKEUP, BRIDAL MAKEUP', 8),
+(20, 'SILVER', 30000, 'BRIDAL MAKEUP, GUEST/FAMILY MAKEUP', 8),
+(21, 'GOLD', 50000, 'AIRBRUSH BRIDAL MAKEUP, BRIDAL MAKEUP, GUEST/FAMILY MAKEUP', 8),
+(22, 'BASIC', 20000, ' Upto 200 person Gathering, Farmhouse, Electricity Back-up, Air-Conditioner, 3000 Per Plate', 9),
+(23, 'SILVER', 40000, 'Upto 300 Person Gathering, lawn/farmhouse, Bridal Room, Fixed Decoration available + BASIC PACK, 4000 Pre Plate.', 9),
+(24, 'GOLD', 60000, 'Upto 500 Person Gathering, lawn/farmhouse, Vallet Parking, Bridal Room, Parking + All the BASIC And SILVERages Pack Advantages, 6000 Per Plate', 9),
+(26, 'BASIC', 15000, 'For 15 min. performance on one event', 10),
+(27, 'SILVER', 20000, 'For 15 min. performance on two events', 10),
+(28, 'BASIC', 10000, ' Upto 200 person Gathering, Farmhouse, Electricity Back-up, Air-Conditioner, 3000 Per Plate', 11),
+(29, 'SILVER', 20000, 'Upto 300 Person Gathering, lawn/farmhouse, Bridal Room, Fixed Decoration available + BASIC PACK, 4000 Pre Plate.', 11),
+(30, 'GOLD', 30000, 'For 15 min. performance for whole event.', 10),
+(31, 'GOLD', 40000, 'Upto 500 Person Gathering, lawn/farmhouse, Vallet Parking, Bridal Room, Parking + All the BASIC And SILVERages Pack Advantages, 6000 Per Plate', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `portfolio`
+--
+
+CREATE TABLE `portfolio` (
+  `id` int(11) NOT NULL,
+  `event_name` varchar(100) NOT NULL,
+  `caption` varchar(100) NOT NULL,
+  `photo` varchar(200) NOT NULL,
+  `video` varchar(200) NOT NULL,
+  `professional_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `portfolio`
+--
+
+INSERT INTO `portfolio` (`id`, `event_name`, `caption`, `photo`, `video`, `professional_id`) VALUES
+(5, 'Vikram Weddings', 'Pre Wedding Photography, Majitha Road', 'uploadedimages/port1.jpg', 'uploadedvideos/port1.jpg', 6),
+(6, 'Habib - Pre Wedding Photography', 'Pre Wedding Photography, Ranjeet Avenue', 'uploadedimages/port2.jpg', 'uploadedvideos/port2.jpg', 7),
+(7, 'Jasnoor Kalra', 'Makeup Artist, Defence colony', 'uploadedimages/port3.jpg', 'uploadedvideos/port3.jpg', 8),
+(8, 'Raj Mahal Resort', 'Lawns/farmhouse,hotel, Batala Road', 'uploadedimages/port4.jpg', 'uploadedvideos/port4.jpg', 9),
+(9, 'Team Encore', 'Choreographers,Lawrence Road', 'uploadedimages/port5.jpg', 'uploadedvideos/port5.jpg', 10),
+(10, 'The Groves', 'Banquet Hall/Farmhouse,Batala Road', 'uploadedimages/port6.jpg', 'uploadedvideos/port6.jpg', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `professional_signup`
+--
+
+CREATE TABLE `professional_signup` (
+  `pid` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `display_name` varchar(100) NOT NULL,
+  `logo` varchar(200) NOT NULL,
+  `display_pic` varchar(200) NOT NULL,
+  `description` varchar(500) NOT NULL,
+  `basic_price` float NOT NULL,
+  `mobile_no` varchar(20) NOT NULL,
+  `otp` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `professional_signup`
+--
+
+INSERT INTO `professional_signup` (`pid`, `email`, `password`, `display_name`, `logo`, `display_pic`, `description`, `basic_price`, `mobile_no`, `otp`) VALUES
+(6, 'vikram@gamil.com', 'vikram99', 'Vikram Weddings', 'uploadedimages/logo1.jpg', 'uploadedimages/display1.webp', 'Majitha Road; Vikram is a budding and talented photographer who has been working in the industry as a wedding photographer.', 10, '7534409254', ''),
+(7, 'habib88@yahoo.in', 'habib88', 'Habib - Pre Wedding Photography', 'uploadedimages/logo2.png', 'uploadedimages/display2.jpg', 'Ranjeet Avenue; Habib - Pre Wedding Photography is a popular pre wedding photography and cinema brand operating from Delhi.', 20, '8746423964', ''),
+(8, 'JasnoorKalra77@gmail.in', 'jasnoor77', 'Jasnoor Kalra Makeup Artist', 'uploadedimages/logo3.jpg', 'uploadedimages/logo3.jpg', 'Defence colony;                      \nJasnoor Kalra Makeup Artist is based in Amritsar. Jasnoor is a professional hair & makeup artist.', 20, '7659254946', ''),
+(9, 'rajmahalResort@yahoo.in', 'rajmahalResort', 'Raj Mahal Resort', 'uploadedimages/logo4.png', 'uploadedimages/logo4.png', 'Batala Road; Raj Mahal Resort is one of the largest and the most beautiful venues. It serves as the perfect property for all sorts of events.', 3, '98341025648', ''),
+(10, 'encore55@gamil.com', 'encore@', 'Encore', 'uploadedimages/logo5.png', 'uploadedimages/logo5.png', 'Lawrence Road; Team Encore is a group of dedicated and certified dance teachers with the aim of adding dance to your celebrations.', 15, '746590237', ''),
+(11, 'thegroves22@gamil.in', 'thegroves22', 'The Groves', 'uploadedimages/logo6.png', 'uploadedimages/logo6.png', 'Batala Road; The Groves, a luscious venue, is perfect for the grande affair like your wedding.', 56, '9876554335', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_signup_table`
+--
+
+CREATE TABLE `user_signup_table` (
+  `email` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `mobileno` varchar(20) NOT NULL,
+  `display_pic` varchar(100) NOT NULL,
+  `display_name` varchar(50) NOT NULL,
+  `description` varchar(200) NOT NULL,
+  `otp` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_signup_table`
+--
+
+INSERT INTO `user_signup_table` (`email`, `password`, `mobileno`, `display_pic`, `display_name`, `description`, `otp`) VALUES
+('dinesh99kumar@yahoo.in', 'kumardinesh99', '7824517263', 'uploadedimages/user2.jpg', 'Dinesh Kumar', 'we are looking for a good event', 0),
+('rahul88@gamil.com', '123456', '9837465528', 'uploadedimages/user3.jpg', 'Rahul Sharma', 'we are looking for a good event', 0),
+('sharma99anmol@gmail.in', 'sharma1999', '8354254724', 'uploadedimages/user1.jpg', 'Anmol Sharma', 'we are looking for a good event', 0);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin_table`
+--
+ALTER TABLE `admin_table`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `booking_table`
+--
+ALTER TABLE `booking_table`
+  ADD PRIMARY KEY (`booking_id`),
+  ADD KEY `package_id` (`package_id`);
+
+--
+-- Indexes for table `category_table`
+--
+ALTER TABLE `category_table`
+  ADD PRIMARY KEY (`category_id`);
+
+--
+-- Indexes for table `packages`
+--
+ALTER TABLE `packages`
+  ADD PRIMARY KEY (`package_id`),
+  ADD KEY `professional_id` (`professional_id`);
+
+--
+-- Indexes for table `portfolio`
+--
+ALTER TABLE `portfolio`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `professional_id` (`professional_id`);
+
+--
+-- Indexes for table `professional_signup`
+--
+ALTER TABLE `professional_signup`
+  ADD PRIMARY KEY (`pid`);
+
+--
+-- Indexes for table `user_signup_table`
+--
+ALTER TABLE `user_signup_table`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `booking_table`
+--
+ALTER TABLE `booking_table`
+  MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `category_table`
+--
+ALTER TABLE `category_table`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `packages`
+--
+ALTER TABLE `packages`
+  MODIFY `package_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `portfolio`
+--
+ALTER TABLE `portfolio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `professional_signup`
+--
+ALTER TABLE `professional_signup`
+  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `booking_table`
+--
+ALTER TABLE `booking_table`
+  ADD CONSTRAINT `booking_table_ibfk_1` FOREIGN KEY (`package_id`) REFERENCES `packages` (`package_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `packages`
+--
+ALTER TABLE `packages`
+  ADD CONSTRAINT `packages_ibfk_1` FOREIGN KEY (`professional_id`) REFERENCES `professional_signup` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `portfolio`
+--
+ALTER TABLE `portfolio`
+  ADD CONSTRAINT `portfolio_ibfk_1` FOREIGN KEY (`professional_id`) REFERENCES `professional_signup` (`pid`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
