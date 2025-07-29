@@ -1,0 +1,105 @@
+<?php
+include"headerfiles.php";
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pro Signup</title>
+</head>
+<body>
+<?php
+include "publicheader.php";
+?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 mt-4 ">
+            <div class="card-body offcanvas-body shadow-lg" style="border-radius:1rem">
+                <form method="post" action="prosignup_action.php">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <h2 class="text-center" style="color: #263944">Professional SignUp</h2>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="Enter Email">
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <input class="form-control" name="password" id="password" placeholder="Enter Password" rows="3"></input>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <input class="form-control" name="displayname" id="dispalyname" placeholder="Enter Your Name" rows="3"></input>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label">Select Logo</label>
+                            <input class="form-control" type="file" name="logo" id="logo" placeholder="logo" rows="3"></input>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <label class="form-label">Select Display Pic</label>
+                            <input class="form-control" type="file" name="pic" id="pic" placeholder="pic" rows="3"></input>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <textarea class="form-control" name="description" id="description" placeholder="Enter Description" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <input class="form-control" name="basicprice" id="basicprice" placeholder="Enter Basic Price" rows="3"></input>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <input class="form-control" name="mobileno" id="mobileno" placeholder="Enter Your Mobile Number" rows="3"></input>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+
+                            <input class="form-control" name="otp" id="otp" placeholder="Enter otp" rows="3"></input>
+                            <?php
+                            $password = "";
+                            for($i=1;$i<=5;$i++){
+                                $password .= rand(0,9);
+                            }
+//                            echo $password,"<br>";
+                            ?>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <input type="submit" value="Submit" class="btn text-white text-center " style="background: #263944">
+                        </div>
+                        <?php
+                        if(isset($_GET['result'])){
+                            if($_GET['result'] == 1){
+                                echo "<div class='alert alert-success alert-dismissible'><button class='btn-close' type='button' data-bs-dismiss='alert'></button>Data Saved Successfully</div>";
+                            }elseif ($_GET['result']==2){
+                                echo "<div class='alert alert-danger'>Server Code Error.</div>";
+                            }else{
+                                echo "<div class='alert alert-danger'>ID already Exsits.</div>";
+                            }
+                        }
+                        ?>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="offcanvas-bottom">
+    <?php
+    include "footer.php";
+    ?>
+</div>
+</body>
+</html>
